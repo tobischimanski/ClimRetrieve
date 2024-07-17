@@ -5,7 +5,17 @@ This is the GitHub repository for the paper ["ClimRetrieve: A Benchmarking Datas
 ## Expert-Annotated Relevant Sources
 
 TODO: fill out details
+Question Data
+Question with Explanations
 
 ## Report-Level Dataset
 
 TODO: fill out details
+Final data
+creation
+
+## Experiments
+
+TODO: fill out the details
+Creation: Code
+Data
