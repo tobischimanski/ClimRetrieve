@@ -91,7 +91,7 @@ def createEmbeddingsScores(embeddings, TOP_K, base_data, test_run=False):
                         sources.append(source)
 
                     # search
-                    name_setup = col + "__" + irbd.split(".")[0]
+                    name_setup = col + "__" + irbds.split("/")[-1].split(".")[0]
                     report_question_data[name_setup] = 0
                     report_question_data.loc[
                         report_question_data.paragraph.apply(lambda x: x in sources), name_setup] = 1
