@@ -59,6 +59,8 @@ You will find the code for creating this dataset in the "Report-Level Dataset" f
 
 ## Experiments
 
-TODO: fill out the details
-- Creation: Code
-- Data
+We follow three steps to execute the experiments:
+1. Create the new information retrieval background for the embedding search (see "create_embedding_search_queries.py" and folder "Embedding_Search_Queries").
+2. Search for the top-k paragraphs with different information retrieval strategies (see create_embedding_search_results.py and folder "Embedding_Search_Results").
+3. TODO: create vizualisation
+
