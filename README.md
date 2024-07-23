@@ -55,10 +55,7 @@ The "ClimRetrieve_ReportLevel" dataset has the following form:
 - relevance_text_sim: Similarity of the _relevant_text_ to the _paragraph_. Values range from 0 (not at all similar) to 1 (identical).
 - sim_text_relevance: _Relevance_ label of the most similar _relevant_text_. This only has explanatory power if the _relevant_text_ and the _paragraph_ are very similar (i.e., there are the same text). In the paper, we set the similarity threshold to 0.9 to be identical. Then _relevance_ is set to _sim_text_relevance_, otherwise _relevance_ is set to zero.
 
-You will find the code for creating this dataset in the "Report-Level Dataset" folder.
-
-TODO:
-- creation
+You will find the code for creating this dataset in the "Report-Level Dataset" folder. A demo run is already implemented. When using the code, make yourself familiar with the details of implementation (e.g., selected thresholds).
 
 ## Experiments
 
