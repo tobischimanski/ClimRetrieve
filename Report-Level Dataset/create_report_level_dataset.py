@@ -105,7 +105,8 @@ def chunking(base_data, test_run=False):
             final_data.append(df)
 
     out = pd.concat(final_data)
-    out.to_csv(f"./Intermediate_Steps_Data/report_level_data_test.csv")
+    if test_run:
+        out.to_csv(f"./Intermediate_Steps_Data/report_level_data_test.csv")
     return out
 
 
@@ -172,14 +173,15 @@ def relevance_calculation(base_data, report_paragraph, nlp, test_run=False):
     save.rename(columns={'relevance_threshold0.9': 'relevance'}, inplace=True)
     save = save[['paragraph', 'report', 'question', 'relevant_text', 'relevance',
        'relevant_text_sim', 'sim_text_relevance']].copy()
-    save.to_csv("./Intermediate_Steps_Data/report_level_data_final_test.csv")
+    if test_run:
+        save.to_csv("./Intermediate_Steps_Data/report_level_data_final_test.csv")
     return save
 
 def main():
     # load base data
     base_data = pd.read_excel("../Expert-Annotated Relevant Sources Dataset/ClimRetrieve_base.xlsx", index_col=0)
     # test_run variable to quickly see functionality
-    test_run = True
+    test_run = False
     # chunk up the reports
     print("Chunk up reports")
     report_paragraph = chunking(base_data, test_run=test_run)  # saved in Intermediate_Steps_Data
@@ -187,6 +189,7 @@ def main():
     # final dataset
     print("Find annotated sentences")
     final = relevance_calculation(base_data, report_paragraph, nlp, test_run=test_run)
+    final.to_csv("ClimRetrieve_ReportLevel_V1.csv")
 
 if __name__ == '__main__':
     main()

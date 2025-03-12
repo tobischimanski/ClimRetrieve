@@ -103,7 +103,7 @@ def createEmbeddingsScores(embeddings, TOP_K, base_data, test_run=False):
     return out
 
 
-base_data = pd.read_csv("../Report-Level Dataset/ClimRetrieve_ReportLevel.csv", index_col=0)
+base_data = pd.read_csv("../Report-Level Dataset/Old_data/ClimRetrieve_ReportLevel_V0.csv", index_col=0)
 TEST_RUN = True # TODO: adjust this if you want to have the full run
 
 embs = ["text-embedding-3-large", "text-embedding-3-small"]  # , "text-embedding-3-large", "text-embedding-ada-002"

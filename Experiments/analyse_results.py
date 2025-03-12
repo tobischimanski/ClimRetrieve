@@ -129,7 +129,7 @@ def visualize(embeddings, mets):
 
 
 # base dataset
-base_data = pd.read_csv("../Report-Level Dataset/ClimRetrieve_ReportLevel.csv", index_col=0)
+base_data = pd.read_csv("../Report-Level Dataset/Old_data/ClimRetrieve_ReportLevel_V0.csv", index_col=0)
 # metric to calculate
 option = "recall" # "precision", "recall", "f1"
 # what is the relevance threshold
