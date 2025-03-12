@@ -3,7 +3,7 @@
 This is the GitHub repository for the paper "ClimRetrieve: A Benchmarking Dataset for Information Retrieval from Corporate Climate Disclosures". Here, you will find the datasets created in the paper. The paper itself delivers a detailed description of the dataset creation. We upload two datasets and code for the experiments.
 
 ## Updates
-- 10/03/2025: Thank you ver much to the great help of Aida Usmanova and Rana Abdullah. The two pointed out some errors in the base dataset and I corrected it. Both datasets are now updated. Please reach out if you find any trouble with the new data.
+- 10/03/2025: I have to thank Aida Usmanova and Rana Abdullah for their great help. The two pointed out some errors in the base dataset, and I corrected it. Both datasets are now updated. Please don't hesitate to reach out if you find any trouble with the new data.
 
 ## Expert-Annotated Relevant Sources Dataset
 
