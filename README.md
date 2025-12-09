@@ -53,9 +53,68 @@ The "ClimRetrieve_ReportLevel" dataset has the following form:
 
 You will find the code for creating this dataset in the "Report-Level Dataset" folder. A demo run has already been implemented. When using the code, make yourself familiar with the details of implementation (e.g., selected thresholds).
 
+## Installation
+
+To set up the environment, install the required dependencies:
+
+```bash
+pip install -r requirements.txt
+```
+
+**Note**: After installing `spacy`, you'll need to download the English language model:
+```bash
+python -m spacy download en_core_web_sm
+```
+
 ## Experiments
 
 We follow three steps to execute the experiments:
 1. Create the new information retrieval background for the embedding search (see "create_embedding_search_queries.py" and folder "Embedding_Search_Queries").
 2. Search for the top-k paragraphs with different information retrieval strategies (see "create_embedding_search_results.py" and folder "Embedding_Search_Results").
 3. Aggregate model results and create a visualization (see "analyse_results.py").
+
+### Data Coverage Analysis
+
+To analyze the coverage and matching between the base dataset and search results, use the `analyze_data_coverage.py` tool:
+
+```bash
+# Analyze a single search result file
+python analyze_data_coverage.py --search-file ./Embedding_Search_Results/text-embedding-3-small__5.csv
+
+# Analyze all search result files in a directory
+python analyze_data_coverage.py --search-dir ./Embedding_Search_Results --output coverage_summary.csv
+```
+
+This tool provides:
+- Match rates between base dataset and search results
+- Analysis of unmatched rows and why they can't be matched
+- Breakdown by report and question
+- Identification of reports/paragraphs not in the base dataset
+
+### Running Tests
+
+The repository includes comprehensive unit tests for the evaluation and analysis scripts. To run the tests:
+
+```bash
+# Install test dependencies (if not already installed)
+pip install pytest>=7.0.0
+
+# Run all tests
+cd Experiments
+pytest tests/ -v
+
+# Run specific test file
+pytest tests/test_analyse_results.py -v
+pytest tests/test_analyze_data_coverage.py -v
+
+# Run with coverage report
+pytest tests/ --cov=. --cov-report=html
+```
+
+The test suite includes:
+- **22 tests** covering core functionality
+- Unit tests for individual functions (`findlen`, `allMetrics_allThreholds`, `normalize_report_path`, etc.)
+- Integration tests for data processing workflows
+- Edge case handling (empty files, unmatched rows, etc.)
+
+All tests use small, real data files to ensure realistic testing scenarios.

@@ -35,8 +35,22 @@ def getMetrics(option, alternative, update_relevance):
         embedding = r.split("\\")[-1].split("/")[-1].split("__")[0]
         temp = pd.read_csv(r, index_col=0)
         # overwrite relevance with new relevance:
+        # Normalize report paths for proper matching (base data has paths without ./Reports/ prefix)
+        temp["report_normalized"] = temp["report"].str.replace("./Reports/", "", regex=False).str.replace("./", "", regex=False)
+        update_relevance_normalized = update_relevance.copy()
+        update_relevance_normalized["report_normalized"] = update_relevance_normalized["report"]
+        
+        # Merge on paragraph, report, question to properly align relevance values
         # print(temp[temp["relevance"] > 0].shape)
-        temp["relevance"] = update_relevance["relevance"]
+        temp = temp.merge(
+            update_relevance_normalized[["paragraph", "report_normalized", "question", "relevance"]],
+            on=["paragraph", "report_normalized", "question"],
+            how="left",
+            suffixes=("", "_new")
+        )
+        # Use the new relevance column, fallback to old if merge failed
+        temp["relevance"] = temp["relevance_new"].fillna(temp["relevance"])
+        temp = temp.drop(columns=["relevance_new", "report_normalized"])
         # print(temp[temp["relevance"] > 0].shape)
 
         columns = ['question__question_with_IR_150len', 'simple_IR__question_with_IR_150len',
@@ -128,14 +142,15 @@ def visualize(embeddings, mets):
     plt.show()
 
 
-# base dataset
-base_data = pd.read_csv("../Report-Level Dataset/Old_data/ClimRetrieve_ReportLevel_V0.csv", index_col=0)
-# metric to calculate
-option = "recall" # "precision", "recall", "f1"
-# what is the relevance threshold
-alternative = 2  # 1, 2,  3
-mets_hri = getMetrics(option, alternative, base_data)
-print(mets_hri.sort_values(by="topk"))
+if __name__ == "__main__":
+    # base dataset
+    base_data = pd.read_csv("../Report-Level Dataset/ClimRetrieve_ReportLevel_V1.csv", index_col=0)
+    # metric to calculate
+    option = "recall" # "precision", "recall", "f1"
+    # what is the relevance threshold
+    alternative = 2  # 1, 2,  3
+    mets_hri = getMetrics(option, alternative, base_data)
+    print(mets_hri.sort_values(by="topk"))
 
-embeddings = "text-embedding-3-large"  # "text-embedding-3-small"
-visualize(embeddings, mets_hri)
+    embeddings = "text-embedding-3-large"  # "text-embedding-3-small"
+    visualize(embeddings, mets_hri)
