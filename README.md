@@ -59,3 +59,21 @@ We follow three steps to execute the experiments:
 1. Create the new information retrieval background for the embedding search (see "create_embedding_search_queries.py" and folder "Embedding_Search_Queries").
 2. Search for the top-k paragraphs with different information retrieval strategies (see "create_embedding_search_results.py" and folder "Embedding_Search_Results").
 3. Aggregate model results and create a visualization (see "analyse_results.py").
+
+### Data Coverage Analysis
+
+To analyze the coverage and matching between the base dataset and search results, use the `analyze_data_coverage.py` tool:
+
+```bash
+# Analyze a single search result file
+python analyze_data_coverage.py --search-file ./Embedding_Search_Results/text-embedding-3-small__5.csv
+
+# Analyze all search result files in a directory
+python analyze_data_coverage.py --search-dir ./Embedding_Search_Results --output coverage_summary.csv
+```
+
+This tool provides:
+- Match rates between base dataset and search results
+- Analysis of unmatched rows and why they can't be matched
+- Breakdown by report and question
+- Identification of reports/paragraphs not in the base dataset

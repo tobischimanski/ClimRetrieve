@@ -1,0 +1,7 @@
+file,embedding,topk,total_rows,matched_rows,unmatched_rows,match_rate,unique_unmatched_paragraphs,paragraphs_not_in_base,reports_not_in_base,common_reports,common_questions
+text-embedding-3-small__10.csv,text-embedding-3-small,10,43445,38680,4777,89.03210956381632,1552,1550,1,29,16
+text-embedding-3-small__15.csv,text-embedding-3-small,15,43445,38680,4777,89.03210956381632,1552,1550,1,29,16
+text-embedding-3-large__10.csv,text-embedding-3-large,10,43445,38680,4777,89.03210956381632,1552,1550,1,29,16
+text-embedding-3-large__15.csv,text-embedding-3-large,15,43445,38680,4777,89.03210956381632,1552,1550,1,29,16
+text-embedding-3-small__5.csv,text-embedding-3-small,5,43445,38680,4777,89.03210956381632,1552,1550,1,29,16
+text-embedding-3-large__5.csv,text-embedding-3-large,5,43445,38680,4777,89.03210956381632,1552,1550,1,29,16
