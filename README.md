@@ -53,6 +53,19 @@ The "ClimRetrieve_ReportLevel" dataset has the following form:
 
 You will find the code for creating this dataset in the "Report-Level Dataset" folder. A demo run has already been implemented. When using the code, make yourself familiar with the details of implementation (e.g., selected thresholds).
 
+## Installation
+
+To set up the environment, install the required dependencies:
+
+```bash
+pip install -r requirements.txt
+```
+
+**Note**: After installing `spacy`, you'll need to download the English language model:
+```bash
+python -m spacy download en_core_web_sm
+```
+
 ## Experiments
 
 We follow three steps to execute the experiments:
@@ -77,3 +90,31 @@ This tool provides:
 - Analysis of unmatched rows and why they can't be matched
 - Breakdown by report and question
 - Identification of reports/paragraphs not in the base dataset
+
+### Running Tests
+
+The repository includes comprehensive unit tests for the evaluation and analysis scripts. To run the tests:
+
+```bash
+# Install test dependencies (if not already installed)
+pip install pytest>=7.0.0
+
+# Run all tests
+cd Experiments
+pytest tests/ -v
+
+# Run specific test file
+pytest tests/test_analyse_results.py -v
+pytest tests/test_analyze_data_coverage.py -v
+
+# Run with coverage report
+pytest tests/ --cov=. --cov-report=html
+```
+
+The test suite includes:
+- **22 tests** covering core functionality
+- Unit tests for individual functions (`findlen`, `allMetrics_allThreholds`, `normalize_report_path`, etc.)
+- Integration tests for data processing workflows
+- Edge case handling (empty files, unmatched rows, etc.)
+
+All tests use small, real data files to ensure realistic testing scenarios.
